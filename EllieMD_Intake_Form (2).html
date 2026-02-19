@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Endurance Wellness | Intake Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #7B4FBF;
+    --teal-light: #F3EDFB;
+    --teal-dark: #5C3490;
+    --coral: #E8735A;
+    --coral-light: #FDF0ED;
+    --cream: #FDFAF6;
+    --text: #2C2C2C;
+    --text-light: #6B6B6B;
+    --border: #E2E8E6;
+    --white: #FFFFFF;
+    --success: #2D9B8A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, #9B72D4 100%);
+    padding: 48px 24px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+    max-width: 480px;
+    margin: 0 auto 8px;
+    line-height: 1.6;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+
+  .disclaimer {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    max-width: 460px;
+    margin: 16px auto 0;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-container {
+    max-width: 640px;
+    margin: -24px auto 40px;
+    padding: 0 16px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .form-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+    overflow: hidden;
+  }
+
+  .section {
+    padding: 32px 32px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-of-type { border-bottom: none; }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .section-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--teal-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--teal-dark);
+  }
+
+  .field-group {
+    margin-bottom: 18px;
+  }
+
+  .field-group:last-child { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 7px;
+    letter-spacing: 0.3px;
+  }
+
+  label .required { color: var(--coral); margin-left: 3px; }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(123,79,191,0.12);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.5;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B6B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+    cursor: pointer;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 480px) {
+    .two-col { grid-template-columns: 1fr; }
+    .section { padding: 24px 20px 18px; }
+  }
+
+  /* Checkbox / Radio Options */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .options-grid { grid-template-columns: 1fr; }
+  }
+
+  .option-item {
+    position: relative;
+  }
+
+  .option-item input[type="checkbox"],
+  .option-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .option-item label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    transition: all 0.18s;
+    background: var(--white);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .option-item label::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    flex-shrink: 0;
+    transition: all 0.18s;
+    background: var(--white);
+  }
+
+  .option-item input[type="radio"] + label::before {
+    border-radius: 50%;
+  }
+
+  .option-item input:checked + label {
+    border-color: var(--teal);
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    font-weight: 500;
+  }
+
+  .option-item input:checked + label::before {
+    background: var(--teal);
+    border-color: var(--teal);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l3 3 5-6' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .option-item input[type="radio"]:checked + label::before {
+    background-image: none;
+    box-shadow: inset 0 0 0 4px white;
+  }
+
+  /* Scale */
+  .scale-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .scale-label {
+    font-size: 12px;
+    color: var(--text-light);
+    white-space: nowrap;
+    min-width: 80px;
+  }
+
+  .scale-label:last-child { text-align: right; }
+
+  .scale-options {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .scale-item {
+    position: relative;
+    flex: 1;
+  }
+
+  .scale-item input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+  .scale-item label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1;
+    min-width: 36px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+    transition: all 0.18s;
+    margin: 0;
+  }
+
+  .scale-item input:checked + label {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: white;
+  }
+
+  /* Submit */
+  .submit-section {
+    padding: 28px 32px 32px;
+    background: linear-gradient(135deg, var(--teal-light) 0%, var(--coral-light) 100%);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 16px rgba(123,79,191,0.35);
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(123,79,191,0.4);
+  }
+
+  .submit-btn:active { transform: translateY(0); }
+
+  .submit-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 12px;
+    font-style: italic;
+  }
+
+  /* Success */
+  .success-screen {
+    display: none;
+    padding: 60px 32px;
+    text-align: center;
+  }
+
+  .success-icon {
+    width: 72px;
+    height: 72px;
+    background: var(--teal-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 32px;
+  }
+
+  .success-screen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--teal-dark);
+    margin-bottom: 12px;
+  }
+
+  .success-screen p {
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.6;
+    max-width: 340px;
+    margin: 0 auto 8px;
+  }
+
+  .success-link {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 13px 28px;
+    background: var(--teal);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.2s;
+  }
+
+  .success-link:hover { background: var(--teal-dark); }
+
+  .error-msg {
+    color: var(--coral);
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+  }
+
+  .field-group.has-error input,
+  .field-group.has-error select,
+  .field-group.has-error textarea {
+    border-color: var(--coral);
+  }
+
+  .field-group.has-error .error-msg { display: block; }
+
+  .hint {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 5px;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="logo">Endurance Wellness</div>
+  <h1>Your Wellness Starts Here</h1>
+  <p>Take 3 minutes to tell us about your goals so we can show you exactly how Endurance Wellness can support your journey.</p>
+  <p class="disclaimer">This form is for informational purposes only and does not constitute medical advice. All care is provided by licensed physicians through Ellie MD.</p>
+</div>
+
+<div class="form-container">
+  <div class="form-card">
+    <form id="intakeForm" action="https://formspree.io/f/mvzbqlkg" method="POST" novalidate>
+
+      <!-- SECTION 1: Contact Info -->
+      <div class="section">
+        <div class="section-label">
+          <div class="section-icon">👤</div>
+          <div class="section-title">Let's Start With You</div>
+        </div>
+
+        <div class="two-col">
+          <div class="field-group">
+            <label>First Name <span class="required">*</span></label>
+            <input type="text" name="firstName" placeholder="First name" required>
+            <div class="error-msg">Please enter your first name</div>
+          </div>
+          <div class="field-group">
+            <label>Last Name <span class="required">*</span></label>
+            <input type="text" name="lastName" placeholder="Last name" required>
+            <div class="error-msg">Please enter your last name</div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Phone Number <span class="required">*</span></label>
+          <input type="tel" name="phone" placeholder="(702) 000-0000" required>
+          <div class="error-msg">Please enter your phone number</div>
+        </div>
+
+        <div class="field-group">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="your@email.com">
+        </div>
+
+        <div class="field-group">
+          <label>Preferred Contact Method <span class="required">*</span></label>
+          <div class="options-grid">
+            <div class="option-item">
+              <input type="radio" name="contactMethod" id="cm_text" value="Text" required>
+              <label for="cm_text">Text Message</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="contactMethod" id="cm_call" value="Phone Call">
+              <label for="cm_call">Phone Call</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="contactMethod" id="cm_email" value="Email">
+              <label for="cm_email">Email</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="contactMethod" id="cm_instagram" value="Messenger">
+              <label for="cm_instagram">Messenger (IG, LinkedIn, Facebook)</label>
+            </div>
+          </div>
+          <div class="error-msg">Please select a contact method</div>
+        </div>
+
+        <div class="field-group">
+          <label>How did you hear about us?</label>
+          <select name="source" id="sourceSelect" onchange="handleSourceChange()">
+            <option value="" disabled selected>Select one...</option>
+            <option>Facebook Group</option>
+            <option>Instagram</option>
+            <option>Referral from a friend</option>
+            <option>Chiropractic / Wellness Office</option>
+            <option>HOTWORX</option>
+            <option>LinkedIn</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field-group" id="referralField" style="display:none;">
+          <label>Who referred you? <span class="hint">(so we can thank them!)</span></label>
+          <input type="text" name="referralName" placeholder="Their name or Instagram handle">
+        </div>
+
+        <div class="field-group" id="otherSourceField" style="display:none;">
+          <label>Tell us where you heard about us!</label>
+          <input type="text" name="otherSource" placeholder="Where did you find us?">
+        </div>
+      </div>
+
+      <!-- SECTION 2: Wellness Goals -->
+      <div class="section">
+        <div class="section-label">
+          <div class="section-icon">🌿</div>
+          <div class="section-title">Your Wellness Goals</div>
+        </div>
+
+        <div class="field-group">
+          <label>What are your top wellness goals? <span class="required">*</span> <span class="hint">Select all that apply</span></label>
+          <div class="options-grid">
+            <div class="option-item">
+              <input type="checkbox" name="goals" id="g_weight" value="Weight Loss">
+              <label for="g_weight">Weight Loss</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="goals" id="g_energy" value="More Energy">
+              <label for="g_energy">More Energy</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="goals" id="g_sleep" value="Better Sleep">
+              <label for="g_sleep">Better Sleep</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="goals" id="g_hormone" value="Hormone Balance">
+              <label for="g_hormone">Hormone Balance</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="goals" id="g_skin" value="Skin & Anti-Aging">
+              <label for="g_skin">Skin & Anti-Aging</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="goals" id="g_muscle" value="Muscle & Recovery">
+              <label for="g_muscle">Muscle & Recovery</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="goals" id="g_libido" value="Sexual Health">
+              <label for="g_libido">Sexual Health</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="goals" id="g_cognitive" value="Mental Clarity">
+              <label for="g_cognitive">Mental Clarity</label>
+            </div>
+          </div>
+          <div class="error-msg">Please select at least one goal</div>
+        </div>
+
+        <div class="field-group">
+          <label>How long have you been working toward these goals?</label>
+          <div class="options-grid">
+            <div class="option-item">
+              <input type="radio" name="goalDuration" id="gd_new" value="Just starting">
+              <label for="gd_new">Just starting</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="goalDuration" id="gd_6mo" value="6+ months">
+              <label for="gd_6mo">6+ months</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="goalDuration" id="gd_years" value="Years - tried everything">
+              <label for="gd_years">Years - tried everything</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="goalDuration" id="gd_unsure" value="Not sure">
+              <label for="gd_unsure">Not sure yet</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>How frustrated are you with your current progress?</label>
+          <div class="scale-row">
+            <span class="scale-label">Not at all</span>
+            <div class="scale-options">
+              <div class="scale-item"><input type="radio" name="frustration" id="f1" value="1"><label for="f1">1</label></div>
+              <div class="scale-item"><input type="radio" name="frustration" id="f2" value="2"><label for="f2">2</label></div>
+              <div class="scale-item"><input type="radio" name="frustration" id="f3" value="3"><label for="f3">3</label></div>
+              <div class="scale-item"><input type="radio" name="frustration" id="f4" value="4"><label for="f4">4</label></div>
+              <div class="scale-item"><input type="radio" name="frustration" id="f5" value="5"><label for="f5">5</label></div>
+            </div>
+            <span class="scale-label">Extremely</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: Health Situation -->
+      <div class="section">
+        <div class="section-label">
+          <div class="section-icon">💊</div>
+          <div class="section-title">Your Current Health Situation</div>
+        </div>
+
+        <div class="field-group">
+          <label>Which best describes your current approach to wellness?</label>
+          <div class="options-grid">
+            <div class="option-item">
+              <input type="radio" name="currentApproach" id="ca_diet" value="Diet and exercise only">
+              <label for="ca_diet">Diet & exercise only</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="currentApproach" id="ca_supps" value="Supplements">
+              <label for="ca_supps">Supplements</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="currentApproach" id="ca_doctor" value="Working with a doctor">
+              <label for="ca_doctor">Working with a doctor</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="currentApproach" id="ca_nothing" value="Not sure where to start">
+              <label for="ca_nothing">Not sure where to start</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>What has held you back from exploring medical wellness programs?</label>
+          <div class="options-grid">
+            <div class="option-item">
+              <input type="checkbox" name="barriers" id="b_cost" value="Cost concerns">
+              <label for="b_cost">Cost concerns</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="barriers" id="b_start" value="Did not know where to start">
+              <label for="b_start">Did not know where to start</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="barriers" id="b_side" value="Worried about side effects">
+              <label for="b_side">Worried about side effects</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="barriers" id="b_qualify" value="Did not think I qualified">
+              <label for="b_qualify">Did not think I qualified</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="barriers" id="b_nothing" value="Nothing - I am ready">
+              <label for="b_nothing">Nothing - I am ready!</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="barriers" id="b_insurance" value="Insurance issues">
+              <label for="b_insurance">Insurance issues</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Anything else about your health situation you want us to know?</label>
+          <textarea name="healthNotes" placeholder="Share anything that feels relevant - current medications, conditions, previous experiences..."></textarea>
+        </div>
+      </div>
+
+      <!-- SECTION 4: Peptide Experience -->
+      <div class="section">
+        <div class="section-label">
+          <div class="section-icon">🔬</div>
+          <div class="section-title">GLP-1 & Peptide Experience</div>
+        </div>
+
+        <div class="field-group">
+          <label>Have you heard of or used GLP-1 medications or peptide therapies?</label>
+          <div class="options-grid">
+            <div class="option-item">
+              <input type="radio" name="peptideExperience" id="pe_yes" value="Yes and currently using">
+              <label for="pe_yes">Yes - currently using</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="peptideExperience" id="pe_used" value="Yes but stopped">
+              <label for="pe_used">Used before but stopped</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="peptideExperience" id="pe_curious" value="Heard of them - curious">
+              <label for="pe_curious">Heard of them - curious</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="peptideExperience" id="pe_no" value="New to this">
+              <label for="pe_no">Brand new to this</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>How important is having direct ongoing access to a medical provider?</label>
+          <div class="options-grid">
+            <div class="option-item">
+              <input type="radio" name="providerAccess" id="pa_very" value="Very important">
+              <label for="pa_very">Very important</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="providerAccess" id="pa_some" value="Somewhat important">
+              <label for="pa_some">Somewhat important</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="providerAccess" id="pa_not" value="Not sure">
+              <label for="pa_not">Not sure</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Would you prefer virtual telehealth or in-person visits?</label>
+          <div class="options-grid">
+            <div class="option-item">
+              <input type="radio" name="visitPref" id="vp_virtual" value="Virtual - convenience matters">
+              <label for="vp_virtual">Virtual - convenience matters</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="visitPref" id="vp_either" value="Either works">
+              <label for="vp_either">Either works for me</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 5: Budget -->
+      <div class="section">
+        <div class="section-label">
+          <div class="section-icon">💳</div>
+          <div class="section-title">Investment & Budget</div>
+        </div>
+
+        <div class="field-group">
+          <label>What monthly investment feels comfortable for your wellness?</label>
+          <div class="options-grid">
+            <div class="option-item">
+              <input type="radio" name="budget" id="bud_low" value="Under $150/month">
+              <label for="bud_low">Under $150/month</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="budget" id="bud_mid" value="$150-300/month">
+              <label for="bud_mid">$150 - $300/month</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="budget" id="bud_high" value="$300-500/month">
+              <label for="bud_high">$300 - $500/month</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="budget" id="bud_flex" value="Flexible - results matter most">
+              <label for="bud_flex">Flexible - results matter most</label>
+            </div>
+          </div>
+          <p class="hint">Note: Ellie MD accepts FSA/HSA, Klarna, PayPal Pay Later, and financing options.</p>
+        </div>
+      </div>
+
+      <!-- SECTION 6: Business Opportunity -->
+      <div class="section">
+        <div class="section-label">
+          <div class="section-icon">🚀</div>
+          <div class="section-title">The Business Opportunity</div>
+        </div>
+
+        <div class="field-group">
+          <label>Are you open to learning about earning 40% commission as an Ellie MD brand partner?</label>
+          <div class="options-grid">
+            <div class="option-item">
+              <input type="radio" name="businessInterest" id="bi_yes" value="Yes - tell me more">
+              <label for="bi_yes">Yes - tell me more!</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="businessInterest" id="bi_maybe" value="Maybe - open to hearing about it">
+              <label for="bi_maybe">Maybe - open to it</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="businessInterest" id="bi_customer" value="No - just interested as a customer">
+              <label for="bi_customer">Just interested as a customer</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="businessInterest" id="bi_both" value="Both - customer and partner">
+              <label for="bi_both">Both - customer and partner!</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Tell us anything else you want us to know!</label>
+          <textarea name="additionalNotes" placeholder="Questions, goals, anything on your mind..."></textarea>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="submit-section">
+        <button type="submit" class="submit-btn">Submit My Intake Form ✦</button>
+        <p class="submit-note">Your information is private and will only be used to personalize your Ellie MD experience.</p>
+      </div>
+
+    </form>
+
+    <!-- Success Screen -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">💚</div>
+      <h2>You are all set!</h2>
+      <p>Thank you for taking the time to share your goals with us. We will be in touch within 24 hours to connect personally.</p>
+      <p style="margin-top: 8px;">In the meantime, feel free to explore our products and learn more about what Ellie MD offers.</p>
+      <a href="https://elliemd.com/TheEnduranceWell" class="success-link" target="_blank">Visit Ellie MD →</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+  function handleSourceChange() {
+    const val = document.getElementById('sourceSelect').value;
+    document.getElementById('referralField').style.display = val === 'Referral from a friend' ? 'block' : 'none';
+    document.getElementById('otherSourceField').style.display = val === 'Other' ? 'block' : 'none';
+  }
+  const form = document.getElementById('intakeForm');
+  const successScreen = document.getElementById('successScreen');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    let valid = true;
+
+    // Clear previous errors
+    document.querySelectorAll('.field-group').forEach(fg => fg.classList.remove('has-error'));
+
+    // Validate first name
+    const firstName = form.querySelector('[name="firstName"]');
+    if (!firstName.value.trim()) {
+      firstName.closest('.field-group').classList.add('has-error');
+      valid = false;
+    }
+
+    // Validate last name
+    const lastName = form.querySelector('[name="lastName"]');
+    if (!lastName.value.trim()) {
+      lastName.closest('.field-group').classList.add('has-error');
+      valid = false;
+    }
+
+    // Validate phone
+    const phone = form.querySelector('[name="phone"]');
+    if (!phone.value.trim()) {
+      phone.closest('.field-group').classList.add('has-error');
+      valid = false;
+    }
+
+    // Validate contact method
+    const contactMethod = form.querySelector('[name="contactMethod"]:checked');
+    if (!contactMethod) {
+      document.querySelector('[name="contactMethod"]').closest('.options-grid').closest('.field-group').classList.add('has-error');
+      valid = false;
+    }
+
+    // Validate goals
+    const goals = form.querySelectorAll('[name="goals"]:checked');
+    if (goals.length === 0) {
+      document.querySelector('[name="goals"]').closest('.options-grid').closest('.field-group').classList.add('has-error');
+      valid = false;
+    }
+
+    if (!valid) {
+      document.querySelector('.field-group.has-error').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Collect data
+    const data = {
+      firstName: firstName.value.trim(),
+      lastName: lastName.value.trim(),
+      phone: phone.value.trim(),
+      email: form.querySelector('[name="email"]').value.trim(),
+      contactMethod: contactMethod ? contactMethod.value : '',
+      source: form.querySelector('[name="source"]').value,
+      goals: Array.from(goals).map(g => g.value).join(', '),
+      goalDuration: (form.querySelector('[name="goalDuration"]:checked') || {}).value || '',
+      frustration: (form.querySelector('[name="frustration"]:checked') || {}).value || '',
+      currentApproach: (form.querySelector('[name="currentApproach"]:checked') || {}).value || '',
+      barriers: Array.from(form.querySelectorAll('[name="barriers"]:checked')).map(b => b.value).join(', '),
+      healthNotes: form.querySelector('[name="healthNotes"]').value.trim(),
+      peptideExperience: (form.querySelector('[name="peptideExperience"]:checked') || {}).value || '',
+      providerAccess: (form.querySelector('[name="providerAccess"]:checked') || {}).value || '',
+      visitPref: (form.querySelector('[name="visitPref"]:checked') || {}).value || '',
+      budget: (form.querySelector('[name="budget"]:checked') || {}).value || '',
+      businessInterest: (form.querySelector('[name="businessInterest"]:checked') || {}).value || '',
+      additionalNotes: form.querySelector('[name="additionalNotes"]').value.trim(),
+      submittedAt: new Date().toLocaleString()
+    };
+
+    console.log('Intake Form Submission:', data);
+
+    // Show success
+    form.style.display = 'none';
+    successScreen.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
